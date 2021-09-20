@@ -7,6 +7,7 @@ Created on Sun Sep 12 10:24:16 2021
 
 # Importing essential libraries
 from flask import Flask, render_template, request
+from flask_cors import CORS, cross_origin
 import pickle
 import numpy as np
 from wsgiref import simple_server
@@ -16,12 +17,15 @@ filename = 'insurance_premium_model.pkl'
 regressor = pickle.load(open(filename, 'rb'))
 
 app = Flask(__name__)
+CORS(app)
 
-@app.route('/')
+@app.route("/", methods=['GET'])
+@cross_origin()
 def home():
 	return render_template('index.html')
 
-@app.route('/predict', methods=['POST'])
+@app.route("/predict", methods=['POST'])
+@cross_origin()
 def predict():
     if request.method == 'POST':
         age = int(request.form['age'])
