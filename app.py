@@ -58,7 +58,7 @@ def predict():
         return render_template('result.html', prediction="Your Insurance Premium should be near about:"+" "+"$"+str(np.round(pred,2)))
 
 if __name__ == '__main__':
-    port = int(os.getenv("PORT"))
-    host = '0.0.0.0'
-    httpd = simple_server.make_server(host=host,port=port, app=app)
-    httpd.serve_forever()
+	port = int(os.getenv("PORT"))
+	host = '0.0.0.0'
+	httpd = simple_server.make_server(host=host,port=port, app=app)
+	httpd.serve_forever()
